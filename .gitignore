@@ -1,0 +1,12 @@
+# uv / venv
+.venv/
+uv.lock
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# 채점 로그
+reports/

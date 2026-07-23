@@ -1,0 +1,31 @@
+# ============================================================
+# blackbox-tests — 여러 과제용 '블랙박스 · 구현 비의존' 계약 테스트 모음
+#
+# - 대상 앱은 python -m <module> 로 서브프로세스 구동한다(내부 코드 import 안 함).
+# - 대상은 TARGET_ROOT / TARGET_MODULE 환경변수로 지정한다(grade.sh 가 세팅).
+# - 과제별 테스트는 assignments/<과제ID>/ 에 독립적으로 둔다.
+# ============================================================
+
+[project]
+name = "blackbox-tests"
+version = "0.1.0"
+description = "codyssey 과제용 블랙박스·구현 비의존 계약 테스트 그레이더"
+requires-python = ">=3.10"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+# 설치 대상이 아님 — 테스트는 소스 트리에서 직접 실행한다.
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+# --import-mode=importlib: 과제마다 동명(conftest.py 등) 모듈이 있어도 충돌하지 않게 한다.
+# pythonpath=["shared"]: 어느 과제 테스트든 `import blackbox` 가 되도록 공용 하네스를 얹는다.
+addopts = "-v --import-mode=importlib"
+pythonpath = ["shared"]
+markers = [
+    "contract: 명세가 요구하는 필수 계약 (구현 무관 통과해야 함)",
+    "optional: 구현마다 다를 수 있는 확장 기능 (미지원 시 skip)",
+]
