@@ -73,6 +73,8 @@ def resolve_target_module(root: Path, candidates: Sequence[str] = ()) -> str:
             f"모듈 자동탐지 실패: {root} 아래에서 __main__.py 를 찾지 못했습니다. "
             "TARGET_MODULE 환경변수(또는 grade.sh 세 번째 인자)로 모듈명을 지정하세요."
         )
+    # 자동탐지 결과를 환경에 되돌려, 보고서 등이 실제 모듈명을 알 수 있게 한다.
+    os.environ["TARGET_MODULE"] = mod
     return mod
 
 
