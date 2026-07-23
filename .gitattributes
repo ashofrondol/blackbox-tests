@@ -1,0 +1,5 @@
+# 이 저장소는 macOS/Linux 에서 실행된다 — 셸/파이썬은 항상 LF 로 체크아웃한다.
+# (CRLF 로 나가면 bash 가 'bad interpreter' 로 죽을 수 있다.)
+* text=auto eol=lf
+*.sh  text eol=lf
+*.py  text eol=lf
